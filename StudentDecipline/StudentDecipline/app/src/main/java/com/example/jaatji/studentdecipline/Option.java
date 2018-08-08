@@ -1,0 +1,35 @@
+package com.example.jaatji.studentdecipline;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+
+public class Option extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_option);
+    }
+
+    public void logout(View view) {
+        SharedPreferences sp=getSharedPreferences("login", Context.MODE_PRIVATE);
+        SharedPreferences.Editor se=sp.edit();
+        se.remove("id");
+        se.remove("name");
+        se.remove("email");
+        se.remove("userType");
+        se.commit();
+        Intent i=new Intent(this,Login.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void scanner(View view) {
+        Intent i=new Intent(this,QRScenner.class);
+        startActivity(i);
+    }
+}
